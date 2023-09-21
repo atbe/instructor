@@ -119,3 +119,6 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/jxnl
 copyright: Copyright &copy; 2023 Jason Liu
+extra_javascript:
+  - scripts/pyodide.min.js
+  - scripts/interactive_code_blocks.js
