@@ -120,5 +120,7 @@ extra:
       link: https://github.com/jxnl
 copyright: Copyright &copy; 2023 Jason Liu
 extra_javascript:
-  - scripts/pyodide.min.js
+  # - https://cdnjs.cloudflare.com/ajax/libs/pyodide/0.24.0/pyodide.js
+  - https://cdn.jsdelivr.net/pyodide/v0.24.0a1/full/pyodide.js
+  # - scripts/pyodide.min.js
   - scripts/interactive_code_blocks.js

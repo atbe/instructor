@@ -40,7 +40,23 @@ async function executeCode(event) {
   outputDiv.classList.add("output");
 
   if (!window.pyodideInstance) {
-    window.pyodideInstance = await loadPyodide();
+    // window.pyodideInstance = await loadPyodide({
+    //   indexUrl: "https://cdn.jsdelivr.net/pyodide/v0.24.0/full/"
+    // });
+
+    window.pyodideInstance = await loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.0a1/full/"
+    });
+    await window.pyodideInstance.loadPackage('setuptools');
+    await window.pyodideInstance.loadPackage('micropip'); // load micropip explicitly
+    const micropip = window.pyodideInstance.pyimport("micropip");
+    console.log('micropip', micropip);
+    await micropip.install('pydantic');
+    console.log('installing multidict');
+    // await micropip.install('https://files.pythonhosted.org/packages/9d/5a/34bd606569178ad8a931ea4d59cda926b046cfa4c01b0191c2e04cfd44c2/multidict-6.0.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl');
+    await micropip.install('https://files.pythonhosted.org/packages/ae/59/911d6e5f1d7514d79c527067643376cddcf4cb8d1728e599b3b03ab51c69/openai-0.28.0-py3-none-any.whl');
+    // await window.pyodideInstance.runPythonAsync("import micropip; await micropip.install('pydantic')");
+    // await window.pyodideInstance.runPythonAsync("import micropip; await micropip.install('https://files.pythonhosted.org/packages/ae/59/911d6e5f1d7514d79c527067643376cddcf4cb8d1728e599b3b03ab51c69/openai-0.28.0-py3-none-any.whl')");
   }
 
   try {
